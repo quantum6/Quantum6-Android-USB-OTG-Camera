@@ -1,7 +1,6 @@
 package net.quantum6.usbcamera.view;
 
 import android.hardware.usb.UsbDevice;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Surface;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -40,7 +38,6 @@ import com.serenegiant.usb.common.AbstractUVCCameraHandler;
 import com.serenegiant.usb.encoder.RecordParams;
 import com.serenegiant.usb.widget.CameraViewInterface;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -249,7 +246,7 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
                     showShortMsg("sorry,camera open failed");
                     return super.onOptionsItemSelected(item);
                 }
-                String picPath = UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME +"/images/"
+                String picPath = FileUtils.ROOT_PATH + "/" + MyApplication.DIRECTORY_NAME +"/images/"
                         + System.currentTimeMillis() + UVCCameraHelper.SUFFIX_JPEG;
 
                 mCameraHelper.capturePicture(picPath, new AbstractUVCCameraHandler.OnCaptureListener() {
@@ -274,7 +271,7 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
                     return super.onOptionsItemSelected(item);
                 }
                 if (!mCameraHelper.isPushing()) {
-                    String videoPath = UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME +"/videos/" + System.currentTimeMillis()
+                    String videoPath = FileUtils.ROOT_PATH + "/" + MyApplication.DIRECTORY_NAME +"/videos/" + System.currentTimeMillis()
                             + UVCCameraHelper.SUFFIX_MP4;
 
 //                    FileUtils.createfile(FileUtils.ROOT_PATH + "test666.h264");

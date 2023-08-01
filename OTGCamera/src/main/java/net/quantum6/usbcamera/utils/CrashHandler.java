@@ -5,11 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
-import android.os.Environment;
-import android.os.Looper;
-import android.widget.Toast;
 
-import net.quantum6.usbcamera.UVCCameraHelper;
 import net.quantum6.usbcamera.application.MyApplication;
 import net.quantum6.usbcamera.view.USBCameraActivity;
 
@@ -138,7 +134,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			sb.append("\n");
 		}
 
-		File file = new File(UVCCameraHelper.ROOT_PATH + MyApplication.DIRECTORY_NAME +"/log.txt");
+		File file = new File(FileUtils.ROOT_PATH + "/" + MyApplication.DIRECTORY_NAME +"/log.txt");
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(file);
