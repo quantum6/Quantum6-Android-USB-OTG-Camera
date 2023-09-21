@@ -31,13 +31,12 @@ public class Mp4MediaMuxer {
 
     // 文件路径；文件时长
     public Mp4MediaMuxer(String path, long durationMillis,boolean isVoiceClose) {
-        String mFilePath;
         this.isVoiceClose = isVoiceClose;
         this.durationMillis = durationMillis;
         if(durationMillis != 0) {
-            mFilePath = path + "-" + index++ + ".mp4";
+            mFilePath = path + "-" + index++;
         }else{
-            mFilePath = path+".mp4";
+            mFilePath = path;
         }
         Object mux = null;
         try {
@@ -120,7 +119,7 @@ public class Mp4MediaMuxer {
                 mMuxer = null;
                 mVideoTrackIndex = mAudioTrackIndex = -1;
                 try {
-                    mMuxer = new MediaMuxer(mFilePath + "-" + ++index + ".mp4", MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
+                    mMuxer = new MediaMuxer(mFilePath + "-" + ++index, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
                     addTrack(mVideoFormat, true);
                     addTrack(mAudioFormat, false);
                 } catch (IOException e) {
@@ -145,7 +144,7 @@ public class Mp4MediaMuxer {
                     }
 
                     if (System.currentTimeMillis() - mBeginMillis <= 1500){
-                        new File(mFilePath + "-" + index + ".mp4").delete();
+                        new File(mFilePath + "-" + index).delete();
                     }
                     mAudioTrackIndex = mVideoTrackIndex = -1;
                 }else{

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">USBCameraQ6</string>
+    <string name="app_latest">Last modify: 2023-09-21</string>
+    <string name="app_author">Author: Quantum6</string>
+    <string name="app_email">Email:quantum6@yeah.net</string>
+    <string name="app_info">USB Camera Q6</string>
+    <string name="usb_otg_camera">Android-USB-OTG-Camera</string>
+    <string name="video_info">VideoInfo</string>
 </resources>

@@ -9,6 +9,8 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
+import net.quantum6.usbcamera.UVCCameraHelper;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -34,7 +36,7 @@ public class MediaMuxerWrapper {
 		try {
 			// 保存到自定义路径还是手机默认Movies路径
 			if (TextUtils.isEmpty(path))
-				mOutputPath = getCaptureFile(Environment.DIRECTORY_MOVIES, ".mp4").toString();
+				mOutputPath = getCaptureFile(Environment.DIRECTORY_MOVIES, UVCCameraHelper.SUFFIX_MP4).toString();
 			mOutputPath = path;
 
 		} catch (final NullPointerException e) {

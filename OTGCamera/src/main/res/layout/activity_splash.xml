@@ -8,7 +8,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|center_vertical"
-        android:text="USB Camera Q6"
+        android:text="@string/app_info"
         android:textSize="28sp"
         android:textStyle="bold" />
 
@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
-        android:text="Author: Quantum6"
+        android:text="@string/app_author"
         android:textSize="14sp"
         android:textStyle="italic" />
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
         android:layout_marginTop="5dp"
-        android:text="Email:quantum6@yeah.net"
+        android:text="@string/app_email"
         android:textSize="14sp"
         android:textStyle="italic" />
 
@@ -35,7 +35,7 @@
         android:layout_weight="1"
         android:gravity="bottom|center_horizontal"
         android:paddingBottom="20dp"
-        android:text="last modify 2022.11.16"
+        android:text="@string/app_latest"
         android:textSize="16sp"
         android:textStyle="bold" />
 </LinearLayout>

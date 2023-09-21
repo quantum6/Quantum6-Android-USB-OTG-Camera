@@ -29,6 +29,8 @@ import java.util.Objects;
 public class UVCCameraHelper {
     public static final String SUFFIX_JPEG = ".jpg";
     public static final String SUFFIX_MP4 = ".mp4";
+    public static final String SUFFIX_YUV = ".yuv";
+
     private static final String TAG = "UVCCameraHelper";
     private int previewWidth = 640;
     private int previewHeight = 480;

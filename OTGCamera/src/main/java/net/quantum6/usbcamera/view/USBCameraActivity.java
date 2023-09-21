@@ -73,6 +73,7 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
 
     private boolean isRequest;
     private boolean isPreview;
+    private boolean isRecordYuv;
 
     private static USBCameraActivity mInstance;
 
@@ -156,6 +157,11 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
                 mFpsCounter.count();
                 mDebugInfo.setText("VideoInfo="
                         +mFpsCounter.getFps());
+
+                if (isRecordYuv)
+                {
+                    FileUtils.putFileStream(nv21Yuv, 0, nv21Yuv.length);
+                }
             }
         });
     }
@@ -238,6 +244,14 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
         return true;
     }
 
+    private String getRecordFileName()
+    {
+        return  FileUtils.ROOT_PATH + "/" + MyApplication.DIRECTORY_NAME +"/videos/"
+                + System.currentTimeMillis()
+                +"-"+(mCameraHelper.getPreviewWidth()+"x"+mCameraHelper.getPreviewHeight())
+                + (isRecordYuv ? UVCCameraHelper.SUFFIX_YUV : UVCCameraHelper.SUFFIX_MP4);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -265,19 +279,37 @@ public class USBCameraActivity extends AppCompatActivity implements CameraDialog
                 });
 
                 break;
-            case R.id.menu_recording:
+
+            case R.id.menu_recording_yuv:
                 if (mCameraHelper == null || !mCameraHelper.isCameraOpened()) {
                     showShortMsg("sorry,camera open failed");
                     return super.onOptionsItemSelected(item);
                 }
-                if (!mCameraHelper.isPushing()) {
-                    String videoPath = FileUtils.ROOT_PATH + "/" + MyApplication.DIRECTORY_NAME +"/videos/" + System.currentTimeMillis()
-                            + UVCCameraHelper.SUFFIX_MP4;
+                if (isRecordYuv)
+                {
+                    isRecordYuv = false;
+                    FileUtils.releaseFile();
+                    showShortMsg("stop record...");
+                }
+                else {
+                    isRecordYuv = true;
+                    FileUtils.createFile(getRecordFileName());
+                    showShortMsg("start record...");
+                }
+                break;
 
-//                    FileUtils.createfile(FileUtils.ROOT_PATH + "test666.h264");
+            case R.id.menu_recording:
+                isRecordYuv = false;
+                if (mCameraHelper == null || !mCameraHelper.isCameraOpened()) {
+                    showShortMsg("sorry,camera open failed");
+                    return super.onOptionsItemSelected(item);
+                }
+
+                if (!mCameraHelper.isPushing()) {
+                    // FileUtils.createfile(FileUtils.ROOT_PATH + "test666.h264");
                     // if you want to record,please create RecordParams like this
                     RecordParams params = new RecordParams();
-                    params.setRecordPath(videoPath);
+                    params.setRecordPath(getRecordFileName());
                     params.setRecordDuration(0);                        // auto divide saved,default 0 means not divided
                     params.setVoiceClose(mSwitchVoice.isChecked());    // is close voice
 

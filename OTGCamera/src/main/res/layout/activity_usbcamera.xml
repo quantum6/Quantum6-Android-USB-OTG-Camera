@@ -106,7 +106,7 @@
         android:layout_marginLeft="13dp"
         android:layout_marginStart="13dp"
         android:layout_marginTop="20dp"
-        android:text="Android-USB-OTG-Camera 2021-1120"
+        android:text="@string/usb_otg_camera"
         android:textColor="@color/colorWhite"
         android:background="#888888"
         />
@@ -121,7 +121,7 @@
         android:layout_marginLeft="13dp"
         android:layout_marginStart="13dp"
         android:layout_marginTop="20dp"
-        android:text="VideoInfo"
+        android:text="@string/video_info"
         android:textColor="@color/colorWhite"
         android:background="#888888"
         />
